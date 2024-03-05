@@ -7,9 +7,116 @@
     <title>Test</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-header {
+        text-align: center;
+
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        padding: 20px;
+        width: 600px;
+        border: 1px solid #888;
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: center;
+    }
+
+    .buttonOK {
+        padding: 8px 32px;
+    }
+
+    .buttonOK:hover,
+    .buttonOK:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
 
 <body>
-    <%- include('views/layout/listDevice.ejs'); %>
+    <div class="wrapper">
+        <div class="container">
+            <h1 class="device-title-h1">Main Title</h1>
+            <div class="content">
+                <h2 class="device-subTitle-h2">My Device</h2>
+                <ul class="device-list">
+                    <li class="device-item">
+                        <img alt="Test" width="30px" height="30px" src="/image/test.jpg" />
+                        <div>
+                            My Device <br>
+                            Connected
+                        </div>
+                        <button onclick="openModal()" type="button" class="openModal device-btn"
+                            data-device-info='{"name": "My Device", "status": "Connected"}'>
+                            Click
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="content">
+                <h2 class="device-subTitle-h2">Devices</h2>
+                <ul class="device-list">
+                    <% devices.forEach(device=> { %>
+                        <%- include ('views/component/device.ejs', { device: device }) %>
+                            <% }); %>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div id="modalHeader" class="modal-header"></div>
+
+            <div id="modalContent"></div>
+
+            <div class="modal-footer">
+                <button class="buttonOK close">OK</button>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        var modal = document.getElementById('myModal');
+        var buttonOk = document.getElementsByClassName("buttonOK")[0];
+        var modalButtons = document.querySelectorAll('.openModal');
+
+        modalButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var deviceInfo = JSON.parse(this.getAttribute('data-device-info'));
+                document.getElementById('modalContent').innerHTML = "Device Name: " + deviceInfo.name + "<br>Status: " + deviceInfo.status;
+                document.getElementById('modalHeader').innerHTML = deviceInfo.name;
+                modal.style.display = "flex";
+            });
+        });
+        buttonOk.onclick = function () {
+            modal.style.display = "none";
+        };
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
 </body>
 
 </html>

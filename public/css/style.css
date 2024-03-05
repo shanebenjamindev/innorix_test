@@ -136,7 +136,6 @@ table {
 
 .container {
     width: 600px;
-    background-color: grey;
 }
 
 .device-title-h1 {
@@ -147,7 +146,7 @@ table {
 
 .device-subTitle-h2 {
     font-weight: 400;
-    font-size: 18px;
+    font-size: 22px;
     padding-bottom: 40px;
 }
 
@@ -155,7 +154,6 @@ table {
 
 .device-item {
     padding: 20px;
-    background-color: red;
     display: flex;
     gap: 18px;
 }

@@ -8,30 +8,21 @@
         right: 0;
         bottom: 0;
         background-color: rgba(0, 0, 0, 0.5);
-        /* Semi-transparent background */
         z-index: 9999;
-        /* Ensure modal is above other elements */
         overflow: auto;
-        /* Enable scrolling if content overflows */
     }
 
-    /* Modal content */
     .modal-content {
         background-color: #fefefe;
         margin: 15% auto;
-        /* Center modal vertically and horizontally */
         padding: 20px;
         border: 1px solid #888;
         border-radius: 5px;
         width: 80%;
-        /* Set modal width */
         max-width: 600px;
-        /* Max width for larger screens */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        /* Add shadow */
     }
 
-    /* Close button */
     .close {
         color: #aaa;
         float: right;
@@ -40,7 +31,6 @@
         cursor: pointer;
     }
 
-    /* Close button on hover */
     .close:hover,
     .close:focus {
         color: black;
@@ -48,12 +38,10 @@
         cursor: pointer;
     }
 
-    /* Modal body padding to prevent content from sticking to edges */
     .modal-body {
         padding: 10px;
     }
 
-    /* Show the modal when the hash matches the modal ID */
     .modal:target {
         display: block;
     }
@@ -74,8 +62,6 @@
 <script>
     var closeBtn = document.querySelector('.close');
     var openModalLink = document.querySelectorAll('.openModal');
-
-    console.log(openModalLink);
 
     closeBtn.addEventListener('click', function () {
         var modal = closeBtn.parentElement.parentElement;

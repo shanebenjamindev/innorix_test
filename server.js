@@ -7,10 +7,12 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+const { devices } = require('./deviceData');
+
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
-    res.render('../main');
+    res.render('../main', { devices: devices });
 });
 
 app.listen(PORT, () => {
